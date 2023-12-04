@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axepta.SDK", "Axepta.SDK\Axepta.SDK.csproj", "{B7FE573E-8D2D-4F46-B155-135F709014D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axepta.SDK", "src\Axepta.SDK\Axepta.SDK.csproj", "{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7FE573E-8D2D-4F46-B155-135F709014D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7FE573E-8D2D-4F46-B155-135F709014D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7FE573E-8D2D-4F46-B155-135F709014D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7FE573E-8D2D-4F46-B155-135F709014D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
