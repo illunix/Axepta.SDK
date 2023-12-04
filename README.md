@@ -2,7 +2,7 @@
 
 # Axepta.SDK
 
-Axepta.SDK is a powerful class library designed for seamless integration with BNP Paribas Axepta Paywall
+Axepta.SDK is a class library designed for seamless integration with BNP Paribas Axepta Paywall
 
 ## Build Status
 [![CI](https://github.com/illunix/Axepta.SDK/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/illunix/Axepta.SDK/actions/workflows/dotnet.yml)
