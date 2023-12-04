@@ -1,6 +1,6 @@
 ﻿namespace Axepta.SDK.Services.Abstractions;
 
-public interface ISignatureService
+internal interface ISignatureService
 {
     string CalculateSignature(
         Dictionary<string, string> orderParams,
