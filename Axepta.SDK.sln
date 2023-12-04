@@ -5,6 +5,10 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axepta.SDK", "src\Axepta.SDK\Axepta.SDK.csproj", "{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5F5F23BA-0707-451D-9C7D-E957B0D0917F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axepta.SDK.Tests", "tests\Axepta.SDK.Tests\Axepta.SDK.Tests.csproj", "{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A8FE5D0-8F85-4124-9AA1-FF9F01D0C518}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54} = {5F5F23BA-0707-451D-9C7D-E957B0D0917F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10666FC1-2144-4E68-8081-40C720DBB2FE}

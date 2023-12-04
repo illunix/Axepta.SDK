@@ -1,4 +1,5 @@
 ﻿global using System.Text.Json.Serialization.Metadata;
+global using System.Security.Cryptography;
 global using System.Text.Json;
 global using System.Text;
 global using System.Text.Json.Serialization;
@@ -9,3 +10,5 @@ global using Polly.Extensions.Http;
 global using Axepta.SDK.Entities;
 global using Axepta.SDK.Exceptions;
 global using Axepta.SDK.JSON;
+global using Axepta.SDK.Services.Abstractions;
+global using Axepta.SDK.Services;
