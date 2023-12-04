@@ -1,0 +1,11 @@
+﻿global using System.Text.Json.Serialization.Metadata;
+global using System.Text.Json;
+global using System.Text;
+global using System.Text.Json.Serialization;
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.Extensions.DependencyInjection;
+global using Polly;
+global using Polly.Extensions.Http;
+global using Axepta.SDK.Entities;
+global using Axepta.SDK.Exceptions;
+global using Axepta.SDK.JSON;
