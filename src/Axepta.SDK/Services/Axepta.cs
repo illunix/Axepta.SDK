@@ -1,7 +1,11 @@
 ﻿namespace Axepta.SDK.Services;
 
-internal sealed class Axepta(HttpClient http) : IAxepta
+internal sealed class Axepta(
+    HttpClient http,
+    ISignatureService signatureService
+) : IAxepta
 {
+
     public async Task CreatePaymentAsync(
         Payment payment,
         CancellationToken ct = default

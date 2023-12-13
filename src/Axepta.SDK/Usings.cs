@@ -12,3 +12,6 @@ global using Axepta.SDK.Exceptions;
 global using Axepta.SDK.JSON;
 global using Axepta.SDK.Services.Abstractions;
 global using Axepta.SDK.Services;
+global using Axepta.SDK.Regex;
+global using Axepta.SDK.Enums;
+global using Axepta.SDK.Attributes;

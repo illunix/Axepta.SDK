@@ -1,73 +1,126 @@
 ﻿namespace Axepta.SDK.Entities;
 
+/// <summary>
+/// Represents payment information, including details such as payment type, service ID, amount, and customer information.
+/// </summary>
 public sealed record Payment
 {
     /// <summary>
-    /// Gets or initializes the store ID as UUID v4.
+    /// Gets or initializes the type of payment.
     /// </summary>
-    [StringLength(36)]
+    [JsonPropertyName("type")]
+    public required PaymentType Type { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the service ID associated with the payment.
+    /// </summary>
     [JsonPropertyName("serviceId")]
     public required string ServiceId { get; init; }
 
     /// <summary>
-    /// Gets or initializes the client ID.
-    /// </summary>
-    [StringLength(20)]
-    [JsonPropertyName("merchantId")]
-    public required string MerchantId { get; init; }
-
-    /// <summary>
-    /// Gets or initializes the amount of the transaction in the smallest unit of currency (e.g., cents).
+    /// Gets or initializes the amount of the payment.
     /// </summary>
     [JsonPropertyName("amount")]
     public required int Amount { get; init; }
 
     /// <summary>
-    /// Gets or initializes the amount of the transaction in the smallest unit of currency (e.g., cents).
+    /// Gets or initializes the currency code for the payment amount.
     /// </summary>
     [StringLength(3)]
     [JsonPropertyName("currency")]
     public required string Currency { get; init; }
 
+    /// <summary>
+    /// Gets or initializes the unique identifier for the payment order.
+    /// </summary>
     [StringLength(100)]
+    [RegularExpression(AllowedCharactersPatterns.ADDITIONAL_ALLOWED_CHARACTERS_PATTERN)]
     [JsonPropertyName("orderId")]
     public required string OrderId { get; init; }
 
+    /// <summary>
+    /// Gets or initializes the payment method used for the transaction.
+    /// </summary>
+    [JsonPropertyName("paymentMethod")]
+    public required PaymentMethod PaymentMethod { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the payment method channel for the transaction.
+    /// </summary>
+    [JsonPropertyName("paymentMethodChannel")]
+    public required string PaymentMethodChannel { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the URL to redirect to after a successful payment.
+    /// </summary>
+    [StringLength(300)]
+    [Url]
+    [JsonPropertyName("successReturnUrl")]
+    public required string SuccessReturnUrl { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the URL to redirect to after a failed payment.
+    /// </summary>
+    [StringLength(300)]
+    [Url]
+    [JsonPropertyName("failureReturnUrl")]
+    public required string FailureReturnUrl { get; init; }
+
+    /// <summary>
+    /// Gets or initializes the general return URL for the payment.
+    /// </summary>
+    [StringLength(300)]
+    [Url]
+    [JsonPropertyName("returnUrl")]
+    public required string ReturnUrl { get; init; }
+
+    /// <summary>
+    /// Gets or initializes information about the customer making the payment.
+    /// </summary>
     [JsonPropertyName("customer")]
     public required Customer Customer { get; init; }
 
-    [JsonPropertyName("signature")]
-    public required string Signature { get; init; }
-
-    [StringLength(100)]
+    /// <summary>
+    /// Gets or initializes the title associated with the payment. Can be null.
+    /// </summary>
+    [StringLength(255)]
+    [RegularExpression(AllowedCharactersPatterns.ADDITIONAL_ALLOWED_CHARACTERS_PATTERN)]
     [JsonPropertyName("title")]
-    [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
     public string? Title { get; init; }
 
-    [StringLength(300)]
-    [JsonPropertyName("successReturnUrl")]
-    public string? SuccessReturnUrl { get; init; }
+    /// <summary>
+    /// Gets or initializes billing information associated with the payment. Can be null.
+    /// </summary>
+    [JsonPropertyName("billing")]
+    public Billing? Billing { get; init; }
 
-    [StringLength(300)]
-    [JsonPropertyName("failureReturnUrl")]
-    public string? FailureReturnUrl { get; init; }
+    /// <summary>
+    /// Gets or initializes shipping information associated with the payment. Can be null.
+    /// </summary>
+    [JsonPropertyName("shipping")]
+    public Shipping? Shipping { get; init; }
 
-    [StringLength(300)]
-    [JsonPropertyName("returnUrl")]
-    public string? ReturnUrl { get; init; }
+    /// <summary>
+    /// Gets or initializes credit card information associated with the payment. Can be null.
+    /// </summary>
+    [RequiredIf(
+        nameof(PaymentMethod),
+        PaymentMethod.Card
+    )]
+    [JsonPropertyName("card")]
+    public Card? Card { get; init; }
 
-    [JsonPropertyName("visibleMethod")]
-    public IEnumerable<string>? Methods { get; init; }
+    /// <summary>
+    /// Gets or initializes additional data associated with the payment. Can be null.
+    /// </summary>
+    [JsonPropertyName("additionalData")]
+    public AdditionalData? AdditionalData { get; init; }
 
-    [JsonPropertyName("cartData")]
-    public string? CartData { get; init; }
-
-    [JsonPropertyName("creditType")]
-    public IEnumerable<string>? CreditType { get; init; }
-
+    /// <summary>
+    /// Gets or initializes the timestamp representing the expiration date and time of the transaction.
+    /// If not provided, the transaction is considered valid indefinitely. Failure to complete the payment
+    /// by the specified timestamp will result in the cancellation of the transaction.
+    /// </summary>
     [JsonPropertyName("activeTo")]
-    public string? ActiveTo { get; init; }
-
-    [JsonPropertyName("paywall")]
-    public PayWall? Paywall { get; init; }
+    public DateTime? ActiveTo { get; init; }
 }
