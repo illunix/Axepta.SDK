@@ -38,8 +38,6 @@ public static class Extensions
                 )
             );
 
-        services.AddSingleton<ISignatureService, SignatureService>();
-
         return services;
     }
  
