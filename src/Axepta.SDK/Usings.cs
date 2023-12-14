@@ -15,3 +15,5 @@ global using Axepta.SDK.Services;
 global using Axepta.SDK.Regex;
 global using Axepta.SDK.Enums;
 global using Axepta.SDK.Attributes;
+global using Axepta.SDK.Entities.Response;
+global using Axepta.SDK.Entities.Request;

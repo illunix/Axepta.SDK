@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities;
+﻿namespace Axepta.SDK.Entities.Request;
 
 /// <summary>
 /// Represents information about a user's web browser, including details such as IP address, language, and user agent.

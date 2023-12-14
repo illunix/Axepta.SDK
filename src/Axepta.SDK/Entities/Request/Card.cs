@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities;
+﻿namespace Axepta.SDK.Entities.Request;
 
 /// <summary>
 /// Represents credit card information, including the cardholder's name, card number, expiration date, and CVV.

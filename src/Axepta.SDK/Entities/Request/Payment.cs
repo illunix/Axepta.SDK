@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities;
+﻿namespace Axepta.SDK.Entities.Request;
 
 /// <summary>
 /// Represents payment information, including details such as payment type, service ID, amount, and customer information.

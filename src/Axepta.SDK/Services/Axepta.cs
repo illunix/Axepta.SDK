@@ -6,14 +6,14 @@ internal sealed class Axepta(
 ) : IAxepta
 {
 
-    public async Task CreatePaymentAsync(
+    public async Task<CreatePaymentResponse> CreatePaymentAsync(
         Payment payment,
         CancellationToken ct = default
     )
         => await http.PostAsync(
-            "payments",
+            $"transaction",
             payment,
-            JsonContext.Default.Payment,
+            JsonContext.Default.CreatePaymentResponse,
             ct
         );
 }

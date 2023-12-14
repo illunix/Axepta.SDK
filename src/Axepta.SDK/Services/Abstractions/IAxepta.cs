@@ -1,8 +1,10 @@
-﻿namespace Axepta.SDK;
+﻿using Payment = Axepta.SDK.Entities.Request.Payment;
+
+namespace Axepta.SDK.Services.Abstractions;
 
 public interface IAxepta
 {
-    Task CreatePaymentAsync(
+    Task<CreatePaymentResponse> CreatePaymentAsync(
         Payment payment,
         CancellationToken ct = default
     );

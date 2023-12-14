@@ -7,7 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axepta.SDK", "src\Axepta.SD
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{5F5F23BA-0707-451D-9C7D-E957B0D0917F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axepta.SDK.Tests", "tests\Axepta.SDK.Tests\Axepta.SDK.Tests.csproj", "{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Axepta.SDK.Tests", "tests\Axepta.SDK.Tests\Axepta.SDK.Tests.csproj", "{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{7BD03D96-C4E2-4E3E-96B2-595B55718C64}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Axepta.Sample", "samples\Axepta.Sample\Axepta.Sample.csproj", "{DE3FB187-BD26-4AC3-B106-CBACC82CB756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,12 +27,17 @@ Global
 		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3FB187-BD26-4AC3-B106-CBACC82CB756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3FB187-BD26-4AC3-B106-CBACC82CB756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3FB187-BD26-4AC3-B106-CBACC82CB756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3FB187-BD26-4AC3-B106-CBACC82CB756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B6CCC9D5-CFE8-40D3-9E15-D97BAD659C54} = {5F5F23BA-0707-451D-9C7D-E957B0D0917F}
+		{DE3FB187-BD26-4AC3-B106-CBACC82CB756} = {7BD03D96-C4E2-4E3E-96B2-595B55718C64}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {10666FC1-2144-4E68-8081-40C720DBB2FE}
