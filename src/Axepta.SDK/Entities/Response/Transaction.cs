@@ -3,7 +3,7 @@
 public sealed record Transaction
 {
     [JsonPropertyName("id")]
-    public required string Id { get; init; }
+    public required Guid Id { get; init; }
 
     [JsonPropertyName("type")]
     public required string Type { get; init; }
@@ -24,7 +24,7 @@ public sealed record Transaction
     public required string NotificationUrl { get; init; }
 
     [JsonPropertyName("serviceId")]
-    public required string ServiceId { get; init; }
+    public required Guid ServiceId { get; init; }
 
     [JsonPropertyName("amount")]
     public required int Amount { get; init; }
@@ -36,10 +36,10 @@ public sealed record Transaction
     public required string OrderId { get; init; }
 
     [JsonPropertyName("paymentMethod")]
-    public required string PaymentMethod { get; init; }
+    public required PaymentMethod PaymentMethod { get; init; }
 
     [JsonPropertyName("paymentMethodChannel")]
-    public required string PaymentMethodChannel { get; init; }
+    public required PaymentMethodChannel PaymentMethodChannel { get; init; }
 
     [JsonPropertyName("payment")]
     public required PaymentResponse Payment { get; init; }

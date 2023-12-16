@@ -6,4 +6,10 @@ public interface IAxepta
         Payment payment,
         CancellationToken ct = default
     );
+
+    Task<ResponseRoot> CreateRefundAsync(
+        Guid paymentId,
+        Refund refund,
+        CancellationToken ct = default
+    );
 }
