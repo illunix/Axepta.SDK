@@ -1,6 +1,6 @@
 ![Axepta Logo](https://i.imgur.com/VfPK1XJ.png)
 
-# Axepta.SDK WIP
+# Axepta.SDK
 
 Axepta.SDK is a class library designed for seamless integration with BNP Paribas Axepta Paywall
 
