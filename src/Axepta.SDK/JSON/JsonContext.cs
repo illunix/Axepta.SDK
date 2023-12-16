@@ -1,5 +1,5 @@
 ﻿namespace Axepta.SDK.JSON;
 
 [JsonSerializable(typeof(Payment))]
-[JsonSerializable(typeof(CreatePaymentResponse))]
+[JsonSerializable(typeof(ResponseRoot))]
 internal sealed partial class JsonContext : JsonSerializerContext { }

@@ -2,20 +2,37 @@
 
 public static class Extensions
 {
-    private static JsonSerializerOptions _sourceGenOptions = new JsonSerializerOptions
+    private static readonly JsonSerializerOptions _sourceGenOptions = new()
     {
         TypeInfoResolver = JsonContext.Default,
         Converters =
         {
             new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-        }
+        },
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
 
-    public static IServiceCollection AddAxeptaPaywall(this IServiceCollection services)
+    public static IServiceCollection AddAxeptaPaywall(
+        this IServiceCollection services,
+        IConfiguration cfg
+    )
     {
+        var optionsSelection = cfg.GetSection(AxeptaPaywallOptions.SelectionName);
+
+        services
+            .AddOptions<AxeptaPaywallOptions>()
+            .Bind(optionsSelection)
+            .ValidateOnStart();
+
+        var axeptaPaywallOptions = optionsSelection.Get<AxeptaPaywallOptions>();
+
+        var axeptaUrl = axeptaPaywallOptions!.Sandbox ?
+            "api.sandbox.axepta.pl" :
+            "api.axepta.pl";
+
         services.AddHttpClient<IAxepta, Services.Axepta>(q =>
         {
-            q.BaseAddress = new("https://api.axepta.pl/v1/merchant/ir49nkdgnuex458f6wnq");
+            q.BaseAddress = new($"https://{axeptaUrl}/v1/merchant/{axeptaPaywallOptions.MerchantId}/");
             q.DefaultRequestHeaders.Accept.Add(new("application/json"));
             q.DefaultRequestHeaders.TryAddWithoutValidation(
                 "Content-Type",
@@ -23,12 +40,12 @@ public static class Extensions
             );
             q.DefaultRequestHeaders.Authorization = new(
                 "Bearer",
-                "ttfc9ve4zeseca4egs0pguk15c3yckkwf7d1n1ts8e55y5hs68886ujt76z5glbl"
+                axeptaPaywallOptions.AuthToken
             );
         })
             .AddPolicyHandler(HttpPolicyExtensions
                 .HandleTransientHttpError()
-                .OrResult(q => q.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .OrResult(q => q.StatusCode == HttpStatusCode.NotFound)
                 .WaitAndRetryAsync(
                     2,
                     q => TimeSpan.FromSeconds(Math.Pow(
@@ -40,40 +57,8 @@ public static class Extensions
 
         return services;
     }
- 
-    internal static async Task PostAsync<T>(
-        this HttpClient http,
-        string url,
-        T body,
-        CancellationToken ct 
-    )
-    {
-        HttpResponseMessage? httpRes = null;
 
-        try
-        {
-            httpRes = await http.PostAsync(
-                url,
-                new StringContent(
-                    JsonSerializer.Serialize(
-                        body,
-                        _sourceGenOptions
-                    ),
-                    Encoding.UTF8,
-                    "application/json"
-                ),
-                ct
-            );
-
-            httpRes.EnsureSuccessStatusCode();
-        }
-        catch (HttpRequestException)
-        {
-            throw new AxeptaException(await httpRes!.Content.ReadAsStringAsync(ct));
-        }
-    }
-
-    public static async Task<K> PostAsync<T, K>(
+    internal static async Task<K> PostAsync<T, K>(
         this HttpClient http,
         string url,
         T body,
@@ -83,13 +68,15 @@ public static class Extensions
     {
         HttpResponseMessage? httpRes = null;
 
+        var elo = JsonSerializer.Serialize(
+            body,
+            _sourceGenOptions
+            );
+
+        Console.WriteLine(elo);
+
         try
         {
-            var elo = JsonSerializer.Serialize(
-                body,
-                _sourceGenOptions
-            );
-                 
             httpRes = await http.PostAsync(
                 url,
                 new StringContent(
@@ -112,9 +99,31 @@ public static class Extensions
         }
         catch (HttpRequestException)
         {
-            var elo = httpRes!.Content.ReadAsStringAsync();
+            switch (httpRes?.StatusCode)
+            {
+                case HttpStatusCode.Unauthorized:
+                    throw new AxeptaException("Authorization failed: The provided token is invalid, preventing authorized access to the requested resource.");
+                case HttpStatusCode.UnprocessableEntity:
+                {
+                    var resBody = JsonSerializer.Deserialize(
+                        await httpRes.Content.ReadAsStringAsync(ct),
+                        typeof(ResponseRoot),
+                        _sourceGenOptions
+                    )! as ResponseRoot;
 
-            throw new AxeptaException(await httpRes!.Content.ReadAsStringAsync(ct));
+                    throw new AxeptaException(resBody?.Data.ValidationErrors);
+                }
+                default:
+                    throw new AxeptaException(await httpRes!.Content.ReadAsStringAsync(ct));
+            }
         }
     }
+
+    internal static string FirstCharToUpper(this string input) =>
+        input switch
+    {
+        null => throw new ArgumentNullException(nameof(input)),
+        "" => throw new ArgumentException($"{nameof(input)} cannot be empty", nameof(input)),
+        _ => string.Concat(input[0].ToString().ToUpper(), input.AsSpan(1))
+    };
 }

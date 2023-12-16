@@ -1,6 +1,6 @@
 ﻿namespace Axepta.SDK.Entities.Response;
 
-public sealed class CreatePaymentResponse
+public sealed class ResponseRoot
 {
     [JsonPropertyName("status")]
     public required string Status { get; set; }

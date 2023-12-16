@@ -1,7 +1,7 @@
 ﻿namespace Axepta.SDK.Attributes;
 
-[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
-internal class RequiredIfAttribute : ValidationAttribute
+[AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
+internal sealed class RequiredIfAttribute : ValidationAttribute
 {
     private readonly string _propertyName;
     private readonly object _desiredValue;
@@ -16,7 +16,7 @@ internal class RequiredIfAttribute : ValidationAttribute
     }
 
     protected override ValidationResult? IsValid(
-        object value, 
+        object? value,
         ValidationContext validationContext
     )
     {

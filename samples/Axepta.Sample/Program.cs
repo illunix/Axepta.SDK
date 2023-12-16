@@ -7,32 +7,33 @@ var builder = WebApplication.CreateSlimBuilder(args);
 builder.Services
     .AddEndpointsApiExplorer()
     .AddSwaggerGen()
-    .AddAxeptaPaywall();
+    .AddAxeptaPaywall(builder.Configuration);
 
 var app = builder.Build();
 
-var payment = app.MapGroup("payments");
+var paymentEndpoints = app.MapGroup("payments");
 
-payment.MapPost(
+paymentEndpoints.MapPost(
     "/",
     async (
         IAxepta axepta,
         CancellationToken ct
     ) =>
     {
-        await axepta.CreatePaymentAsync(
+        var payment = await axepta.CreatePaymentAsync(
             new()
             {
                 Type = PaymentType.Sale,
-                ServiceId = "62f574ed-d4ad-4a7e-9981-89ed7284aaba",
+                ServiceId = "eff3207f-d2a0-4560-99ce-bba83267c90b",
                 Amount = 100,
                 Currency = "PLN",
                 OrderId = "123456789",
                 PaymentMethod = PaymentMethod.Pbl,
-                PaymentMethodChannel = "pbl",
+                PaymentMethodChannel = PaymentMethodChannel.Ipko,
                 SuccessReturnUrl = "https://example.com/success",
                 FailureReturnUrl = "https://example.com/failure",
                 ReturnUrl = "https://example.com",
+                ClientIp = "192.168.10.2",
                 Customer = new()
                 {
                     Id = "123",
@@ -44,7 +45,7 @@ payment.MapPost(
             ct
         );
 
-        return Results.Ok();
+        return Results.Ok(payment);
     }
 );
 

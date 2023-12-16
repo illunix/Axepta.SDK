@@ -5,6 +5,8 @@
 /// </summary>
 public sealed record Payment
 {
+    private int _amount;
+
     /// <summary>
     /// Gets or initializes the type of payment.
     /// </summary>
@@ -21,7 +23,11 @@ public sealed record Payment
     /// Gets or initializes the amount of the payment.
     /// </summary>
     [JsonPropertyName("amount")]
-    public required int Amount { get; init; }
+    public required int Amount
+    {
+        get => _amount;
+        set => _amount = value * 100;
+    }
 
     /// <summary>
     /// Gets or initializes the currency code for the payment amount.
@@ -48,7 +54,7 @@ public sealed record Payment
     /// Gets or initializes the payment method channel for the transaction.
     /// </summary>
     [JsonPropertyName("paymentMethodChannel")]
-    public required string PaymentMethodChannel { get; init; }
+    public required PaymentMethodChannel PaymentMethodChannel { get; init; }
 
     /// <summary>
     /// Gets or initializes the URL to redirect to after a successful payment.
@@ -79,6 +85,12 @@ public sealed record Payment
     /// </summary>
     [JsonPropertyName("customer")]
     public required Customer Customer { get; init; }
+
+    /// <summary>
+    /// Gets or initializes client ip address associated with the user.
+    /// </summary>
+    [JsonPropertyName("clientIp")]
+    public required string ClientIp { get; init; }
 
     /// <summary>
     /// Gets or initializes the title associated with the payment. Can be null.

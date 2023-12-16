@@ -3,8 +3,11 @@
 public sealed record Data
 {
     [JsonPropertyName("transaction")]
-    public required Transaction Transaction { get; init; }
+    public Transaction? Transaction { get; init; }
 
     [JsonPropertyName("action")]
-    public required Action Action { get; init; }
+    public Action? Action { get; init; }
+
+    [JsonPropertyName("validatorErrors")]
+    public IReadOnlyList<ValidationError>? ValidationErrors { get; init; }
 }
