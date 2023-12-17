@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents billing information for a customer, providing details such as name, address, and contact information.

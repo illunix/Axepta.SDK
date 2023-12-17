@@ -1,4 +1,4 @@
-namespace Axepta.SDK.Entities.Response;
+namespace Axepta.SDK;
 
 public sealed record ValidationError
 {

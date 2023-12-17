@@ -1,4 +1,4 @@
-namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents the installments information for BNP, including address, credit types, and products.
