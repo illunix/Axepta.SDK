@@ -1,4 +1,4 @@
-namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents a product with details like name, price, quantity, and code.

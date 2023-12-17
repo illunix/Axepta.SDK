@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents shipping information for a customer, inheriting properties from the <see cref="Billing"/> class.

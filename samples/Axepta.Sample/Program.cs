@@ -1,6 +1,4 @@
 using Axepta.SDK;
-using Axepta.SDK.Enums;
-using Axepta.SDK.Services.Abstractions;
 
 var builder = WebApplication.CreateSlimBuilder(args);
 
