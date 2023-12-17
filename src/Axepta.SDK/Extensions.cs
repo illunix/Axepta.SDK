@@ -62,39 +62,40 @@ public static class Extensions
         this HttpClient http,
         string url,
         T body,
-        JsonTypeInfo<K> jsonTypeInfoResponse,
         CancellationToken ct = default
     )
     {
         HttpResponseMessage? httpRes = null;
 
-        var elo = JsonSerializer.Serialize(
-            body,
-            _sourceGenOptions
-            );
-
-        Console.WriteLine(elo);
+        var httpResContentAsJson = async () => httpRes is null ?
+            string.Empty :
+            await httpRes.Content.ReadAsStringAsync(ct);
 
         try
         {
-            httpRes = await http.PostAsync(
-                url,
-                new StringContent(
-                    JsonSerializer.Serialize(
-                        body,
-                        _sourceGenOptions
-                    ),
-                    Encoding.UTF8,
-                    "application/json"
-                ),
-                ct
+            var json = JsonSerializer.Serialize(
+                body,
+                _sourceGenOptions
             );
+
+            httpRes = await http
+                .PostAsync(
+                    url,
+                    new StringContent(
+                        json,
+                        Encoding.UTF8,
+                        "application/json"
+                    ),
+                    ct
+                )
+                .ConfigureAwait(false);
 
             httpRes.EnsureSuccessStatusCode();
 
-            return JsonSerializer.Deserialize(
-                await httpRes.Content.ReadAsStringAsync(ct),
-                jsonTypeInfoResponse
+            return (K)JsonSerializer.Deserialize(
+                await httpResContentAsJson().ConfigureAwait(false),
+                typeof(K),
+                _sourceGenOptions
             )!;
         }
         catch (HttpRequestException)
@@ -106,7 +107,7 @@ public static class Extensions
                 case HttpStatusCode.UnprocessableEntity:
                 {
                     var resBody = JsonSerializer.Deserialize(
-                        await httpRes.Content.ReadAsStringAsync(ct),
+                        await httpResContentAsJson().ConfigureAwait(false),
                         typeof(ResponseRoot),
                         _sourceGenOptions
                     )! as ResponseRoot;
@@ -114,7 +115,7 @@ public static class Extensions
                     throw new AxeptaException(resBody?.Data.ValidationErrors);
                 }
                 default:
-                    throw new AxeptaException(await httpRes!.Content.ReadAsStringAsync(ct));
+                    throw new AxeptaException(await httpResContentAsJson().ConfigureAwait(false));
             }
         }
     }
