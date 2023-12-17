@@ -6,10 +6,9 @@ internal sealed class Axepta(HttpClient http) : IAxepta
         Payment payment,
         CancellationToken ct = default
     )
-        => http.PostAsync(
+        => http.PostAsync<Payment, ResponseRoot>(
             "transaction",
             payment,
-            JsonContext.Default.ResponseRoot,
             ct
         );
 
@@ -18,10 +17,9 @@ internal sealed class Axepta(HttpClient http) : IAxepta
         Refund refund,
         CancellationToken ct = default
     )
-        => http.PostAsync(
+        => http.PostAsync<Refund, ResponseRoot>(
             $"payment/{paymentId}/refund",
             refund,
-            JsonContext.Default.ResponseRoot,
             ct
         );
 }

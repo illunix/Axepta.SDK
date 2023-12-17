@@ -9,10 +9,10 @@ public sealed record Transaction
     public required string Type { get; init; }
 
     [JsonPropertyName("status")]
-    public required string Status { get; init; }
+    public required OrderStatus Status { get; init; }
 
     [JsonPropertyName("source")]
-    public required string Source { get; init; }
+    public required OrderSource Source { get; init; }
 
     [JsonPropertyName("createdAt")]
     public required int CreatedAt { get; init; }
