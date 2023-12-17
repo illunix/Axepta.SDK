@@ -1,4 +1,4 @@
-namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents a refund transaction, including information such as the type of transaction, 

@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Services.Abstractions;
+﻿namespace Axepta.SDK;
 
 /// <summary>
 /// Defines the operations for handling Axepta payments, including creating payments and processing refunds.

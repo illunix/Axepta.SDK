@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Enums;
+namespace Axepta.SDK;
 
 public enum PaymentMethod : byte
 {

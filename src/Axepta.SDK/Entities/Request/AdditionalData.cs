@@ -1,4 +1,4 @@
-﻿namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents additional data associated with a payment, including browser information.

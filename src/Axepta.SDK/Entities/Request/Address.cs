@@ -1,4 +1,4 @@
-namespace Axepta.SDK.Entities.Request;
+namespace Axepta.SDK;
 
 /// <summary>
 /// Represents a postal address with street, postal code, and city details.
