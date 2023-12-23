@@ -22,4 +22,7 @@ internal sealed class Axepta(HttpClient http) : IAxepta
             refund,
             ct
         );
+
+    public IImmutableDictionary<string, IImmutableList<string>> GetPaymentMethods()
+        => PaymentMethod.List();
 }

@@ -9,6 +9,7 @@ builder.Services
 
 var app = builder.Build();
 
+var generalEndpoints = app.MapGroup("");
 var paymentEndpoints = app.MapGroup("payments");
 
 paymentEndpoints.MapPost(
@@ -27,7 +28,7 @@ paymentEndpoints.MapPost(
                 Currency = "PLN",
                 OrderId = "123456789",
                 PaymentMethod = PaymentMethod.Pbl,
-                PaymentMethodChannel = PaymentMethodChannel.Ipko,
+                PaymentMethodChannel = PaymentMethod.Pbl.,
                 SuccessReturnUrl = "https://example.com/success",
                 FailureReturnUrl = "https://example.com/failure",
                 ReturnUrl = "https://example.com",
@@ -44,6 +45,16 @@ paymentEndpoints.MapPost(
         );
 
         return Results.Ok(payment);
+    }
+);
+
+generalEndpoints.MapGet(
+    "/payment-methods",
+    (IAxepta axepta) =>
+    {
+        var paymentMethods = axepta.GetPaymentMethods();
+
+        return Results.Ok(paymentMethods);
     }
 );
 

@@ -118,7 +118,6 @@ public sealed record Payment
     /// <summary>
     /// Gets or sets the credit card information for the payment, required if the payment method is a card. This property is conditional based on the payment method.
     /// </summary>
-    [RequiredIf(nameof(PaymentMethod), PaymentMethod.Card)]
     [JsonPropertyName("card")]
     public Card? Card { get; init; }
 

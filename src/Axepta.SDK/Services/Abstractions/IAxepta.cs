@@ -29,4 +29,6 @@ public interface IAxepta
         Refund refund,
         CancellationToken ct = default
     );
+
+    IImmutableDictionary<string, IImmutableList<string>> GetPaymentMethods();
 }
