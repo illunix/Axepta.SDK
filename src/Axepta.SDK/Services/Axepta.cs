@@ -27,8 +27,17 @@ internal sealed class Axepta(HttpClient http) : IAxepta
         Guid transationId,
         CancellationToken ct = default
     )
-        => (await http.GetAsync<TransactionResponse>(
+        => (await http.GetAsync<ResponseRoot>(
             $"transaction/{transationId}",
             ct
         )).Data.Transaction!;
+
+    public async Task<PaymentResponse> GetPaymentAsync(
+        Guid paymentId,
+        CancellationToken ct = default
+    )
+        => (await http.GetAsync<ResponseRoot>(
+            $"payment/{paymentId}",
+            ct
+        )).Data.Payment!;
 }

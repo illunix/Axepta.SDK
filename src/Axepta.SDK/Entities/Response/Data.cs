@@ -5,6 +5,9 @@ public sealed record Data
     [JsonPropertyName("transaction")]
     public Transaction? Transaction { get; init; }
 
+    [JsonPropertyName("payment")]
+    public PaymentResponse? Payment { get; init; }
+
     [JsonPropertyName("action")]
     public Action? Action { get; init; }
 

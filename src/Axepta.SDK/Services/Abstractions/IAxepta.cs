@@ -42,4 +42,17 @@ public interface IAxepta
         Guid transactionId,
         CancellationToken ct = default
     );
+
+    /// <summary>
+    /// Retrieves the details of a specific payment asynchronously.
+    /// </summary>
+    /// <param name="paymentId">The unique identifier of the payment to retrieve.</param>
+    /// <param name="ct">An optional cancellation token to cancel the request.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains the <see cref="PaymentResponse"/> object with the details of the requested payment.
+    /// </returns>
+    Task<PaymentResponse> GetPaymentAsync(
+        Guid paymentId,
+        CancellationToken ct = default
+    );
 }
