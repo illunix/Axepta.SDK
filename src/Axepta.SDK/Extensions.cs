@@ -58,6 +58,39 @@ public static class Extensions
         return services;
     }
 
+    internal static async Task<T> GetAsync<T>(
+        this HttpClient http,
+        string url,
+        CancellationToken ct = default
+    )
+    {
+        HttpResponseMessage? httpRes = null;
+
+        var httpResContentAsJson = async () => httpRes is null ?
+            string.Empty :
+            await httpRes.Content.ReadAsStringAsync(ct);
+
+        try
+        {
+            httpRes = await http.GetAsync(
+                url,
+                ct
+            );
+
+            httpRes.EnsureSuccessStatusCode();
+
+            return (T)JsonSerializer.Deserialize(
+                await httpResContentAsJson().ConfigureAwait(false),
+                typeof(T),
+                _sourceGenOptions
+            )!;
+        }
+        catch (HttpRequestException)
+        {
+            throw new AxeptaException(await httpResContentAsJson().ConfigureAwait(false));
+        }
+    }
+
     internal static async Task<K> PostAsync<T, K>(
         this HttpClient http,
         string url,
