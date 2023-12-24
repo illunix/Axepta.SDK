@@ -22,4 +22,13 @@ internal sealed class Axepta(HttpClient http) : IAxepta
             refund,
             ct
         );
+
+    public async Task<Transaction> GetTransactionAsync(
+        Guid transationId,
+        CancellationToken ct = default
+    )
+        => (await http.GetAsync<TransactionResponse>(
+            $"transaction/{transationId}",
+            ct
+        )).Data.Transaction!;
 }

@@ -29,4 +29,17 @@ public interface IAxepta
         Refund refund,
         CancellationToken ct = default
     );
+
+    /// <summary>
+    /// Retrieves the details of a specific transaction asynchronously.
+    /// </summary>
+    /// <param name="transactionId">The unique identifier of the transaction to retrieve.</param>
+    /// <param name="ct">An optional cancellation token to cancel the request.</param>
+    /// <returns>
+    /// A task that represents the asynchronous operation. The task result contains the <see cref="Transaction"/> object with the details of the requested transaction.
+    /// </returns>
+    Task<Transaction> GetTransactionAsync(
+        Guid transactionId,
+        CancellationToken ct = default
+    );
 }
