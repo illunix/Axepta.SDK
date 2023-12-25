@@ -55,6 +55,8 @@ public static class Extensions
                 )
             );
 
+        services.AddScoped<IAxeptaSignatureValidator, AxeptaSignatureValidator>();
+
         return services;
     }
 

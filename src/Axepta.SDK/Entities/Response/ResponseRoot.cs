@@ -3,8 +3,8 @@ namespace Axepta.SDK;
 public sealed class ResponseRoot
 {
     [JsonPropertyName("status")]
-    public required string Status { get; set; }
+    public required string Status { get; init; }
 
     [JsonPropertyName("data")]
-    public required Data Data { get; set; }
+    public required Data Data { get; init; }
 }
