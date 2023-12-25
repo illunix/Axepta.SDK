@@ -3,62 +3,62 @@ namespace Axepta.SDK;
 public sealed record PaymentResponse
 {
     [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    public required string Id { get; init; }
 
     [JsonPropertyName("url")]
-    public string? Url { get; set; }
+    public string? Url { get; init; }
 
     [JsonPropertyName("serviceId")]
-    public Guid? ServiceId { get; set; }
+    public Guid? ServiceId { get; init; }
 
     [JsonPropertyName("orderId")]
-    public string? OrderId { get; set; }
+    public string? OrderId { get; init; }
 
     [JsonPropertyName("amount")]
-    public string? Amount { get; set; }
+    public string? Amount { get; init; }
 
     [JsonPropertyName("amountPaid")]
-    public int? AmountPaid { get; set; }
+    public int? AmountPaid { get; init; }
 
     [JsonPropertyName("amountRefunded")]
-    public int? AmountRefunded { get; set; }
+    public int? AmountRefunded { get; init; }
 
     [JsonPropertyName("amountSubmittedRefund")]
-    public int? AmountSubmittedRefund { get; set; }
+    public int? AmountSubmittedRefund { get; init; }
 
     [JsonPropertyName("currency")]
-    public string? Currency { get; set; }
+    public string? Currency { get; init; }
 
     [JsonPropertyName("status")]
-    public required OrderStatus Status { get; set; }
+    public required OrderStatus Status { get; init; }
 
     [JsonPropertyName("isActive")]
-    public bool? IsActive { get; set; }
+    public bool? IsActive { get; init; }
 
     [JsonPropertyName("createdAt")]
-    public int? CreatedAt { get; set; }
+    public int? CreatedAt { get; init; }
 
     [JsonPropertyName("modifiedAt")]
-    public int? ModifiedAt { get; set; }
+    public int? ModifiedAt { get; init; }
 
     [JsonPropertyName("isGenerated")]
-    public bool? IsGenerated { get; set; }
+    public bool? IsGenerated { get; init; }
 
     [JsonPropertyName("isUsed")]
-    public bool? IsUsed { get; set; }
+    public bool? IsUsed { get; init; }
 
     [JsonPropertyName("isConfirmVisited")]
-    public bool? IsConfirmVisited { get; set; }
+    public bool? IsConfirmVisited { get; init; }
 
     [JsonPropertyName("returnUrl")]
-    public string? ReturnUrl { get; set; }
+    public string? ReturnUrl { get; init; }
 
     [JsonPropertyName("failureReturnUrl")]
-    public string? FailureReturnUrl { get; set; }
+    public string? FailureReturnUrl { get; init; }
 
     [JsonPropertyName("successReturnUrl")]
-    public string? SuccessReturnUrl { get; set; }
+    public string? SuccessReturnUrl { get; init; }
 
     [JsonPropertyName("customer")]
-    public Customer? Customer { get; set; }
+    public Customer? Customer { get; init; }
 }

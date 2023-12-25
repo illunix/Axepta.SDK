@@ -2,6 +2,7 @@ global using System.Net;
 global using System.Text.Json;
 global using System.Text;
 global using System.Text.Json.Serialization;
+global using System.Security.Cryptography;
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Configuration;
