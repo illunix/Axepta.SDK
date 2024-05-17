@@ -17,6 +17,10 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
   <ItemGroup>
     <None Include="..\..\assets\AxeptaLogo.png" Pack="true" PackagePath="" Visible="false" />
     <None Include="..\..\README.md" Pack="true" PackagePath="" Visible="false" />

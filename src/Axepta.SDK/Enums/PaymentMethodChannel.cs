@@ -28,7 +28,7 @@ public enum PaymentMethodChannel
     Oneclick,
     Recurring,
 #endregion
-#region Blik
+#region blik
     Blik
 #endregion
 }

@@ -20,7 +20,7 @@ public sealed record Payment
     /// Gets or sets the service ID associated with the payment. This is a unique identifier for the service involved in the payment.
     /// </summary>
     [JsonPropertyName("serviceId")]
-    public required string ServiceId { get; init; }
+    public string? ServiceId { get; private set; }
 
     /// <summary>
     /// Gets or sets the payment amount. The setter converts the input amount from a major currency unit (e.g., dollars) to a minor unit (e.g., cents).
@@ -140,4 +140,7 @@ public sealed record Payment
     /// </summary>
     [JsonPropertyName("activeTo")]
     public DateTime? ActiveTo { get; init; }
+
+    internal void SetServiceId(string serviceId)
+        => ServiceId = serviceId;
 }

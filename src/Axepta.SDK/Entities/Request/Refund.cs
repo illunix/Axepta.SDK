@@ -4,7 +4,7 @@ namespace Axepta.SDK;
 /// Represents a refund transaction, including information such as the type of transaction, 
 /// service ID, and the refund amount. This class is designed to handle the specifics of processing a refund.
 /// </summary>
-public sealed class Refund
+public sealed record Refund
 {
     private readonly int _amount;
 
@@ -20,7 +20,7 @@ public sealed class Refund
     /// This is a unique identifier for the service involved in the refund transaction.
     /// </summary>
     [JsonPropertyName("serviceId")]
-    public required string ServiceId { get; init; }
+    public string? ServiceId { get; private set; }
 
     /// <summary>
     /// Gets the amount of the refund. 
@@ -32,4 +32,7 @@ public sealed class Refund
         get => _amount;
         init => _amount = value * 100; 
     }
+
+    internal void SetServiceId(string serviceId)
+        => ServiceId = serviceId;
 }

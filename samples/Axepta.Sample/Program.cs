@@ -22,7 +22,6 @@ paymentEndpoints.MapPost(
             new()
             {
                 Type = PaymentType.Sale,
-                ServiceId = "eff3207f-d2a0-4560-99ce-bba83267c90b",
                 Amount = 100,
                 Currency = "PLN",
                 OrderId = "123456789",
@@ -46,6 +45,24 @@ paymentEndpoints.MapPost(
         return Results.Ok(payment);
     }
 );
+
+paymentEndpoints.MapPost(
+    "/webhook",
+    async (
+        IAxeptaNotification axeptaNotification,
+        HttpContext ctx,
+        CancellationToken ct
+    ) =>
+    {
+        if (await axeptaNotification.HasValidSignature(ctx))
+        {
+            return Results.Ok();
+        }
+
+        return Results.Unauthorized();
+    }
+);
+
 
 app.UseSwagger();
 app.UseSwaggerUI();

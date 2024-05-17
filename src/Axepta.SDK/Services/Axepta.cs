@@ -1,34 +1,43 @@
 ﻿namespace Axepta.SDK.Services;
 
-internal sealed class Axepta(HttpClient http) : IAxepta
+internal sealed class Axepta(
+    HttpClient http,
+    IOptions<AxeptaPaywallOptions> options
+ ) : IAxepta
 {
     public Task<ResponseRoot> CreatePaymentAsync(
         Payment payment,
         CancellationToken ct = default
     )
-        => http.PostAsync<Payment, ResponseRoot>(
+    {
+        payment.SetServiceId(options.Value.Service.Id);
+        return http.PostAsync<Payment, ResponseRoot>(
             "transaction",
             payment,
             ct
         );
+    }
 
     public Task<ResponseRoot> CreateRefundAsync(
         Guid paymentId,
         Refund refund,
         CancellationToken ct = default
     )
-        => http.PostAsync<Refund, ResponseRoot>(
+    {
+        refund.SetServiceId(options.Value.Service.Id);
+        return http.PostAsync<Refund, ResponseRoot>(
             $"payment/{paymentId}/refund",
             refund,
             ct
         );
+    }
 
     public async Task<Transaction> GetTransactionAsync(
-        Guid transationId,
+        Guid transactionId,
         CancellationToken ct = default
     )
         => (await http.GetAsync<ResponseRoot>(
-            $"transaction/{transationId}",
+            $"transaction/{transactionId}",
             ct
         )).Data.Transaction!;
 
