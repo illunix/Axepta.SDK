@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Axepta.SDK</PackageId>
-    <VersionPrefix>1.0.2</VersionPrefix>
+    <VersionPrefix>1.0.3</VersionPrefix>
     <VersionSuffix>alpha</VersionSuffix>
     <Authors>Maksymilian Szokalski</Authors>
     <Description>Axepta.SDK is a class library for BNP Paribas Axepta Paywall</Description>
