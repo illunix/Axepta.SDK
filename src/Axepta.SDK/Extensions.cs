@@ -55,6 +55,8 @@ public static class Extensions
                 )
             );
 
+        services.AddSingleton<IAxeptaNotification, AxeptaNotification>();
+
         return services;
     }
 
