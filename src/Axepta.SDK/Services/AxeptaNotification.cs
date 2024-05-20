@@ -2,7 +2,7 @@
 
 internal sealed class AxeptaNotification(IOptions<AxeptaPaywallOptions> options) : IAxeptaNotification
 {
-    public async Task<bool> HasValidSignature(HttpContext ctx)
+    public async Task<(bool, Notification)> HasValidSignature(HttpContext ctx)
     {
         var dto = NotificationHeaderDto.FromString(ctx.Request.Headers["X-Axepta-Signature"].ToString());
 
@@ -12,8 +12,16 @@ internal sealed class AxeptaNotification(IOptions<AxeptaPaywallOptions> options)
 
         reader.Close();
 
-        return dto.Signature == ComputeSha256Hash(body + "XrvZlCclg45zOOBtANK5reKo4onNlMrKAwgM");
+        return (
+            dto.Signature == ComputeSha256Hash(body + options.Value.Service.Key),
+            (Notification)JsonSerializer.Deserialize(
+                body,
+                typeof(Notification),
+                Extensions.JsonSerializerOptions
+            )!
+        );
     }
+
 
     private string ComputeSha256Hash(string data)
     {

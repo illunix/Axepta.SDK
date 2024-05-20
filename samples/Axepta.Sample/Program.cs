@@ -23,7 +23,7 @@ paymentEndpoints.MapPost(
             {
                 Type = PaymentType.Sale,
                 Amount = 100,
-                Currency = "PLN",
+                Currency = Currency.PLN,
                 OrderId = "123456789",
                 PaymentMethod = PaymentMethod.Pbl,
                 PaymentMethodChannel = PaymentMethodChannel.Ipko,
@@ -54,12 +54,20 @@ paymentEndpoints.MapPost(
         CancellationToken ct
     ) =>
     {
-        if (await axeptaNotification.HasValidSignature(ctx))
+        var (
+            isValid, 
+            notification
+        ) = await axeptaNotification.HasValidSignature(ctx);
+
+        if (!isValid) 
+            return Results.Unauthorized();
+
+        if (notification.Payment.Status == OrderStatus.Settled)
         {
-            return Results.Ok();
+            // Do smth..
         }
 
-        return Results.Unauthorized();
+        return Results.Ok();
     }
 );
 
