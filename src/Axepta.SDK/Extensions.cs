@@ -2,12 +2,12 @@
 
 public static class Extensions
 {
-    private static readonly JsonSerializerOptions _sourceGenOptions = new()
+    public static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         TypeInfoResolver = JsonContext.Default,
         Converters =
         {
-            new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            new JsonEnumMemberStringEnumConverter()
         },
         DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
     };
@@ -84,7 +84,7 @@ public static class Extensions
             return (T)JsonSerializer.Deserialize(
                 await httpResContentAsJson().ConfigureAwait(false),
                 typeof(T),
-                _sourceGenOptions
+                JsonSerializerOptions
             )!;
         }
         catch (HttpRequestException)
@@ -110,7 +110,7 @@ public static class Extensions
         {
             var json = JsonSerializer.Serialize(
                 body,
-                _sourceGenOptions
+                JsonSerializerOptions
             );
 
             httpRes = await http
@@ -130,7 +130,7 @@ public static class Extensions
             return (K)JsonSerializer.Deserialize(
                 await httpResContentAsJson().ConfigureAwait(false),
                 typeof(K),
-                _sourceGenOptions
+                JsonSerializerOptions
             )!;
         }
         catch (HttpRequestException)
@@ -144,7 +144,7 @@ public static class Extensions
                     var resBody = JsonSerializer.Deserialize(
                         await httpResContentAsJson().ConfigureAwait(false),
                         typeof(ResponseRoot),
-                        _sourceGenOptions
+                        JsonSerializerOptions
                     )! as ResponseRoot;
 
                     throw new AxeptaException(resBody?.Data.ValidationErrors);

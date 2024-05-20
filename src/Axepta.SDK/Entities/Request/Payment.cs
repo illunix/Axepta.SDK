@@ -37,7 +37,7 @@ public sealed record Payment
     /// </summary>
     [StringLength(3)]
     [JsonPropertyName("currency")]
-    public required string Currency { get; init; }
+    public required Currency Currency { get; init; }
 
     /// <summary>
     /// Gets or sets the unique identifier for the payment order, which can be used for tracking and referencing the transaction.

@@ -2,5 +2,5 @@
 
 public interface IAxeptaNotification
 {
-    Task<bool> HasValidSignature(HttpContext ctx);
+    Task<(bool, Notification)> HasValidSignature(HttpContext ctx);
 }

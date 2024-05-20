@@ -18,3 +18,5 @@ global using Microsoft.AspNetCore.Http;
 global using System.Security.Cryptography;
 global using Axepta.SDK.Entities.Response;
 global using Axepta.SDK.Services;
+global using System.Reflection;
+global using Axepta.SDK.Converters;

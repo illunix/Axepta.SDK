@@ -30,7 +30,7 @@ public sealed record Transaction
     public required int Amount { get; init; }
 
     [JsonPropertyName("currency")]
-    public required string Currency { get; init; }
+    public required Currency Currency { get; init; }
 
     [JsonPropertyName("orderId")]
     public required string OrderId { get; init; }
