@@ -143,9 +143,9 @@ public static class Extensions
                 {
                     var resBody = JsonSerializer.Deserialize(
                         await httpResContentAsJson().ConfigureAwait(false),
-                        typeof(AxeptaResponseRoot),
+                        typeof(ResponseRoot),
                         JsonSerializerOptions
-                    )! as AxeptaResponseRoot;
+                    )! as ResponseRoot;
 
                     throw new AxeptaException(resBody?.Data.ValidationErrors);
                 }

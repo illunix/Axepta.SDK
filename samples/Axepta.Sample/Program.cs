@@ -47,37 +47,6 @@ paymentEndpoints.MapPost(
 );
 
 paymentEndpoints.MapPost(
-    "/payment-url",
-    async (
-        IAxepta axepta,
-        CancellationToken ct
-    ) =>
-    {
-        var payment = await axepta.CreatePaymentUrlAsync(
-            new()
-            {
-                Amount = 100,
-                Currency = Currency.PLN,
-                OrderId = "123456789",
-                ReturnUrl = "https://example.com",
-                SuccessReturnUrl = "https://example.com/success",
-                FailureReturnUrl = "https://example.com/failure",
-                Customer = new()
-                {
-                    Id = "123",
-                    FirstName = "Jan",
-                    LastName = "Kowalski",
-                    Email = "jan.kowalski@example.com"
-                }
-            },
-            ct
-        );
-
-        return Results.Ok(payment);
-    }
-);
-
-paymentEndpoints.MapPost(
     "/webhook",
     async (
         IAxeptaNotification axeptaNotification,

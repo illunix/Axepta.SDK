@@ -8,9 +8,6 @@ public sealed record Data
     [JsonPropertyName("payment")]
     public PaymentResponse? Payment { get; init; }
 
-    [JsonPropertyName("paymentLink")]
-    public PaymentLink? PaymentLink { get; init; }
-
     [JsonPropertyName("action")]
     public Action? Action { get; init; }
 
