@@ -18,5 +18,5 @@ jobs:
         with:
           global-json-file: './global.json'
       - name: Build and Test
-        run: ./scripts/Buid.ps1
+        run: ./scripts/Build.ps1
         shell: pwsh
