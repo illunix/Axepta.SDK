@@ -11,9 +11,14 @@ public interface IAxepta
     /// </summary>
     /// <param name="payment">The payment details required to process the payment.</param>
     /// <param name="ct">An optional cancellation token to cancel the request.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="ResponseRoot"/> object with the payment response.</returns>
-    Task<ResponseRoot> CreatePaymentAsync(
+    /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="AxeptaResponseRoot"/> object with the payment response.</returns>
+    Task<AxeptaResponseRoot> CreatePaymentAsync(
         Payment payment,
+        CancellationToken ct = default
+    );
+
+    Task<AxeptaResponseRoot> CreatePaymentUrlAsync(
+        GeneratePaymentLink paymentLink,
         CancellationToken ct = default
     );
 
@@ -23,8 +28,8 @@ public interface IAxepta
     /// <param name="paymentId">The unique identifier of the payment to be refunded.</param>
     /// <param name="refund">The refund details required to process the refund.</param>
     /// <param name="ct">An optional cancellation token to cancel the request.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="ResponseRoot"/> object with the refund response.</returns>
-    Task<ResponseRoot> CreateRefundAsync(
+    /// <returns>A task that represents the asynchronous operation. The task result contains the <see cref="AxeptaResponseRoot"/> object with the refund response.</returns>
+    Task<AxeptaResponseRoot> CreateRefundAsync(
         Guid paymentId,
         Refund refund,
         CancellationToken ct = default
