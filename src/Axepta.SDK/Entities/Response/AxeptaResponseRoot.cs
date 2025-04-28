@@ -1,6 +1,6 @@
 namespace Axepta.SDK;
 
-public sealed class ResponseRoot
+public sealed class AxeptaResponseRoot
 {
     [JsonPropertyName("status")]
     public required string Status { get; set; }

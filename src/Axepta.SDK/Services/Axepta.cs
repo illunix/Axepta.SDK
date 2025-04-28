@@ -5,27 +5,40 @@ internal sealed class Axepta(
     IOptions<AxeptaPaywallOptions> options
  ) : IAxepta
 {
-    public Task<ResponseRoot> CreatePaymentAsync(
+    public Task<AxeptaResponseRoot> CreatePaymentAsync(
         Payment payment,
         CancellationToken ct = default
     )
     {
         payment.SetServiceId(options.Value.Service.Id);
-        return http.PostAsync<Payment, ResponseRoot>(
+        return http.PostAsync<Payment, AxeptaResponseRoot>(
             "transaction",
             payment,
             ct
         );
     }
 
-    public Task<ResponseRoot> CreateRefundAsync(
+    public Task<AxeptaResponseRoot> CreatePaymentUrlAsync(
+        GeneratePaymentLink paymentLink,
+        CancellationToken ct = default
+    )
+    {
+        paymentLink.SetServiceId(options.Value.Service.Id);
+        return http.PostAsync<GeneratePaymentLink, AxeptaResponseRoot>(
+           "payment-link",
+           paymentLink,
+           ct
+       );
+    }
+
+    public Task<AxeptaResponseRoot> CreateRefundAsync(
         Guid paymentId,
         Refund refund,
         CancellationToken ct = default
     )
     {
         refund.SetServiceId(options.Value.Service.Id);
-        return http.PostAsync<Refund, ResponseRoot>(
+        return http.PostAsync<Refund, AxeptaResponseRoot>(
             $"payment/{paymentId}/refund",
             refund,
             ct
@@ -36,7 +49,7 @@ internal sealed class Axepta(
         Guid transactionId,
         CancellationToken ct = default
     )
-        => (await http.GetAsync<ResponseRoot>(
+        => (await http.GetAsync<AxeptaResponseRoot>(
             $"transaction/{transactionId}",
             ct
         )).Data.Transaction!;
@@ -45,7 +58,7 @@ internal sealed class Axepta(
         Guid paymentId,
         CancellationToken ct = default
     )
-        => (await http.GetAsync<ResponseRoot>(
+        => (await http.GetAsync<AxeptaResponseRoot>(
             $"payment/{paymentId}",
             ct
         )).Data.Payment!;
