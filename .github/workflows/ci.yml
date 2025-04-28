@@ -17,10 +17,6 @@ jobs:
       - uses: actions/setup-dotnet@v4
         with:
           global-json-file: './global.json'
-      - run: dotnet --version
-      - name: Restore dependencies
-        run: dotnet restore 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
-      - name: Test
-        run: dotnet test --configuration Release --no-build --no-restore
+      - name: Build and Test
+        run: ./scripts/Buid.ps1
+        shell: pwsh
