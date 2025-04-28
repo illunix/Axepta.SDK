@@ -5,10 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <PackageId>Axepta.SDK</PackageId>
-    <VersionPrefix>1.0.5</VersionPrefix>
     <Authors>Maksymilian Szokalski</Authors>
+	<Copyright>Copyright Maksymilian Szokalski</Copyright>
     <Description>Axepta.SDK is a class library for BNP Paribas Axepta Paywall</Description>
-    <PackageTags>BNP Paribas;Axepta;Paywall;Payments;Transactions</PackageTags>
+    <PackageTags>bnp paribas;axepta;paywall;payments;transactions</PackageTags>
+	<MinVerTagPrefix>v</MinVerTagPrefix>
     <RepositoryUrl>https://github.com/illunix/Axepta.SDK</RepositoryUrl>
     <PackageProjectUrl>https://github.com/illunix/Axepta.SDK</PackageProjectUrl>
     <PackageIcon>AxeptaLogo.png</PackageIcon>
